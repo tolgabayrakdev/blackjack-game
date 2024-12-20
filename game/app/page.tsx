@@ -38,7 +38,7 @@ export default function Home() {
 
   // resetBalance fonksiyonunu güncelleyelim
   const resetBalance = () => {
-    const newBalance = 1000
+    const newBalance = 500
     setBalance(newBalance)
     localStorage.setItem('blackjackBalance', newBalance.toString())
     window.location.reload()
@@ -507,7 +507,7 @@ export default function Home() {
                       onClick={resetBalance}
                       className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-bold"
                     >
-                      Yeni Oyun ($1000)
+                      Yeni Oyun ($500)
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
