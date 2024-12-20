@@ -328,7 +328,7 @@ export default function Home() {
   const renderCard = (card: Card, index: number, isDealing: boolean, isNewlyDrawn: boolean) => (
     <motion.div 
       key={`${card.rank}${card.suit}-${index}`}
-      className="bg-white rounded-lg p-4 w-16 h-24 flex items-center justify-center"
+      className="bg-white rounded-lg p-1 sm:p-4 w-10 sm:w-16 h-16 sm:h-24 flex items-center justify-center text-xs sm:text-base"
       variants={cardVariants}
       initial="initial"
       animate={isNewlyDrawn ? "drawing" : "dealing"}
@@ -383,25 +383,25 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-green-900 p-4 sm:p-8">
       <div className="max-w-4xl mx-auto relative">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 bg-black/30 p-4 rounded-xl backdrop-blur-sm">
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <h1 className="text-3xl sm:text-4xl font-bold text-white">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 bg-black/30 p-4 rounded-xl backdrop-blur-sm space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white text-center sm:text-left">
               Blackjack
             </h1>
             {playerName && (
-              <span className="text-emerald-400 text-xl">
+              <span className="text-emerald-400 text-lg sm:text-xl">
                 Oyuncu: {playerName}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-4 text-xl sm:text-2xl">
-              <div className="bg-emerald-900/50 px-4 py-2 rounded-lg">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-xl sm:text-2xl w-full sm:w-auto">
+              <div className="bg-emerald-900/50 px-4 py-2 rounded-lg whitespace-nowrap">
                 <span className="text-emerald-400">Bakiye:</span>
                 <span className="text-white ml-2">${balance}</span>
               </div>
               {currentBet > 0 && (
-                <div className="bg-amber-900/50 px-4 py-2 rounded-lg">
+                <div className="bg-amber-900/50 px-4 py-2 rounded-lg whitespace-nowrap">
                   <span className="text-amber-400">Bahis:</span>
                   <span className="text-white ml-2">${currentBet}</span>
                 </div>
@@ -411,7 +411,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={resetSettings}
-              className="px-3 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg text-sm font-medium"
+              className="px-3 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg text-sm font-medium whitespace-nowrap"
               title="Tüm ayarları sıfırla"
             >
               Sıfırla
@@ -633,7 +633,7 @@ export default function Home() {
                 className="text-center"
               >
                 <h2 className="text-3xl text-white mb-8 font-bold">Bahsinizi Seçin</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto px-2 sm:px-0">
                   {betOptions.map((amount) => (
                     <motion.button
                       key={amount}
@@ -643,7 +643,7 @@ export default function Home() {
                       disabled={amount > balance || currentBet > 0 || gameStatus === 'playing'}
                       className={`
                         relative overflow-hidden group
-                        px-6 py-4 rounded-xl font-bold text-xl shadow-lg
+                        px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg
                         ${amount <= balance && !currentBet && gameStatus !== 'playing'
                           ? 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-white'
                           : 'bg-gray-500/50 text-gray-300 cursor-not-allowed'
@@ -682,16 +682,16 @@ export default function Home() {
                 </motion.div>
 
                 {/* Dealer'ın kartları */}
-                <div className="bg-black/30 p-4 sm:p-6 rounded-xl backdrop-blur-sm">
-                  <h2 className="text-xl sm:text-2xl text-white mb-4 font-semibold">
+                <div className="bg-black/30 p-2 sm:p-6 rounded-xl backdrop-blur-sm">
+                  <h2 className="text-lg sm:text-2xl text-white mb-2 sm:mb-4 font-semibold">
                     Dealer&apos;ın Kartları: 
                     <span className="ml-2 text-emerald-400">
                       {dealerCards.length > 0 && `(${calculateHandValue(dealerCards)})`}
                     </span>
                   </h2>
-                  <div className="min-h-[120px] bg-black/20 rounded-lg p-4">
+                  <div className="min-h-[80px] sm:min-h-[120px] bg-black/20 rounded-lg p-2 sm:p-4">
                     <AnimatePresence>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {dealerCards.map((card, index) => 
                           renderCard(card, index, isDealing, false)
                         )}
@@ -701,8 +701,8 @@ export default function Home() {
                 </div>
 
                 {/* Oyuncunun kartları */}
-                <div className="bg-black/30 p-4 sm:p-6 rounded-xl backdrop-blur-sm">
-                  <h2 className="text-xl sm:text-2xl text-white mb-4 font-semibold">
+                <div className="bg-black/30 p-2 sm:p-6 rounded-xl backdrop-blur-sm">
+                  <h2 className="text-lg sm:text-2xl text-white mb-2 sm:mb-4 font-semibold">
                     Sizin Kartlarınız:
                     {playerCards.length > 0 && (
                       <span className="ml-2 text-emerald-400">
@@ -710,9 +710,9 @@ export default function Home() {
                       </span>
                     )}
                   </h2>
-                  <div className="min-h-[120px] bg-black/20 rounded-lg p-4">
+                  <div className="min-h-[80px] sm:min-h-[120px] bg-black/20 rounded-lg p-2 sm:p-4">
                     <AnimatePresence>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {playerCards.map((card, index) => 
                           renderCard(card, index, isDealing, index === justDrawnCard)
                         )}
@@ -723,7 +723,7 @@ export default function Home() {
 
                 {/* Kontrol butonları */}
                 <motion.div 
-                  className="flex justify-center gap-4"
+                  className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-2 sm:px-0"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
@@ -732,8 +732,8 @@ export default function Home() {
                       <motion.button 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 rounded-xl font-bold text-xl shadow-lg
-                          bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white"
+                        className="px-4 sm:px-8 py-2 sm:py-4 rounded-xl font-bold text-base sm:text-xl shadow-lg
+                          bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full sm:w-auto"
                         onClick={hit}
                       >
                         Kart Çek
@@ -741,20 +741,20 @@ export default function Home() {
                       <motion.button 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 rounded-xl font-bold text-xl shadow-lg
-                          bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
+                        className="px-4 sm:px-8 py-2 sm:py-4 rounded-xl font-bold text-base sm:text-xl shadow-lg
+                          bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white w-full sm:w-auto"
                         onClick={stand}
                       >
                         Dur
                       </motion.button>
                     </>
                   ) : gameStatus === 'waiting' && !isBetting && balance > 0 ? (
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 rounded-xl font-bold text-xl shadow-lg
-                          bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
+                        className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg
+                          bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white w-full sm:w-auto"
                         onClick={startNewHand}
                         disabled={lastBet > balance}
                       >
@@ -763,8 +763,8 @@ export default function Home() {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 rounded-xl font-bold text-xl shadow-lg
-                          bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white"
+                        className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg
+                          bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white w-full sm:w-auto"
                         onClick={() => setIsBetting(true)}
                       >
                         Bahis Değiştir
