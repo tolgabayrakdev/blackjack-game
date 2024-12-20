@@ -9,7 +9,7 @@ export default function Home() {
   const [dealerCards, setDealerCards] = useState<Card[]>([])
   const [gameStatus, setGameStatus] = useState<'waiting' | 'playing' | 'finished'>('waiting')
   const [message, setMessage] = useState<string>('')
-  const [balance, setBalance] = useState<number>(1000)
+  const [balance, setBalance] = useState<number>(500)
   const [currentBet, setCurrentBet] = useState<number>(0)
   const [isBetting, setIsBetting] = useState<boolean>(true)
   const [isDealing, setIsDealing] = useState(false)
