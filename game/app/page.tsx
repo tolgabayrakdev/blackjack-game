@@ -519,7 +519,7 @@ export default function Home() {
                     </motion.button>
                   </div>
                   <p className="text-gray-400 text-sm mt-4 italic">
-                    "Kumar bir hastalıktır, ve sende bir hastasın!"
+                    "Kumar bir hastalıktır, ve sende bir hastasın"
                   </p>
                 </div>
               </motion.div>
