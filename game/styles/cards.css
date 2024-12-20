@@ -1,0 +1,29 @@
+@keyframes dealCard {
+  0% {
+    transform: translate(-1000px, -1000px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.card-dealt {
+  animation: dealCard 0.5s ease-out forwards;
+}
+
+@keyframes drawCard {
+  0% {
+    transform: translate(-100px, -50px) rotate(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.card-drawn {
+  animation: drawCard 0.3s ease-out forwards;
+} 
